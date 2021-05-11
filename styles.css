@@ -1,0 +1,57 @@
+.repository-vimeo-label {
+    font-weight: bold;
+}
+
+.repository-vimeo-label-inline {
+    margin-left: .5rem;
+}
+
+.repository-vimeo-input {
+    margin-bottom: 1rem;
+    border: 1px solid #777;
+    width: 100%;
+}
+
+.repository-vimeo-input:focus,
+.repository-vimeo-select:focus {
+    border-color: #0095ec;
+    transition: all .2s ease;
+}
+
+.repository-vimeo-input:focus-visible,
+.repository-vimeo-select:focus-visible,
+.repository-vimeo-button:focus-visible {
+    outline: none;
+}
+
+.repository-vimeo-select {
+    padding: .25rem;
+    border: 1px solid #777;
+    background: #FFF;
+    margin-left: .5rem;
+    margin-bottom: 1rem;
+
+}
+
+.repository-vimeo-button {
+    width: 100%;
+    margin-top: .5rem;
+    margin-bottom: .5rem;
+    background: #0095ec;
+    border: none;
+    padding: .25rem .5rem;
+    font-weight: bold;
+    color: white;
+}
+
+.repository-vimeo-button:hover {
+    background: #0181cb;
+}
+
+.repository_vimeo div.fp-toolbar {
+    width: 100%;
+}
+
+.repository_vimeo div.fp-toolbar div.fp-tb-search {
+    width: 100%;
+}

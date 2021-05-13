@@ -1,4 +1,14 @@
 {
+    "name": "4linux/vimeo",
+    "description": "This plugin integrates the Vimeo platform and Moodle",
+    "minimum-stability": "stable",
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "Leonardo Aprigio da Silva",
+            "email": "leonardo.silva@4linux.com.br"
+        }
+    ],
     "require": {
         "vimeo/vimeo-api": "^1.2"
     }

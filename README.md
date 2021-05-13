@@ -2,7 +2,7 @@ This plugin allow to you insert a video from your vimeo repository.
 
 ## Getting Started
 
-You need to xtract this plugin zip on directory of your moodle instalation.
+You need to extract this plugin zip on directory of your moodle instalation under path /repository/vimeo.
 
 ### Prerequisites
 ```
@@ -12,79 +12,31 @@ Vimeo Account
 
 A valid Vimeo API App
 ```
-### Installing
+### Installing and Configuring
 ```
 1 - Create account on Vimeo
 
 2 - Create a new App on Api Vimeo
 
-3 - Create a valid AccessToken
+3 - Create a valid Client Secret
+
+4 - Add a URL callback my_moodle_domain.com/repository/vimeo/authentication_callback.php
+
+5 - Install this plugin extracting this zip on my_moodle_root/repository/vimeo
+
+6 - Go to Vimeo configuration and fill the form with your Client Identifier and Client Secret
+
+7 - Go back to Vimeo configuration, click on Authenticate button. This will direct you to Vimeo platform
+
+8 - After allowing the app, you will be redirected to your Moodle site.
 ```
 
-Say what the step will be
+### How to use
 
+The use consists of 4 steps:
 ```
-Give the example
+1 - When browsing on repositories, the plugin should appears on repository list. Click on it
+2 - Your video files will appear
+3 - You can do a search using the filter form
+4 - Select a file
 ```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
-## Running the tests
-
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
-
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
-
-## Authors
-
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-* Hat tip to anyone who's code was used
-* Inspiration
-* etc

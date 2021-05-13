@@ -1,4 +1,34 @@
 <?php
+// This file is part of Moodle - http://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+
+/**
+ * Language file
+ *
+ * @package    repository_vimeo
+ * @copyright  2021 4Linux  {@link https://4linux.com.br/}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+defined('MOODLE_INTERNAL') || die();
+
+$string['pluginname'] = 'Videos Vimeo';
+$string['access_token'] = 'Token de acesso Vimeo';
+$string['clientid'] = 'Chave client identifier';
+$string['clientsecret'] = 'Chave client secret';
+$string['configplugin'] = 'Configuração do repositório Vimeo';
+$string['vimeo:view'] = 'Visualizar o repositório Vimeo';
 $string['authenticatebutton'] = 'Autenticar';
 $string['authenticatebuttonhelper'] = "Clique no botão Autenticar para gerar o token de autenticação. Você será direcionado para a plataforma Vimeo para permitir o acesso aos vídeos";
 $string['howauthenticate'] = "Para realizar a autenticação, siga os seguintes passos:
@@ -27,3 +57,4 @@ $string['modifiedtime'] = 'Horário de modificação';
 $string['plays'] = 'Reproduzidas';
 $string['asc'] = 'Ascendente';
 $string['desc'] = 'Descendente';
+$string['privacy:metadata'] = 'O plugin repositório Vimeo não armazena nenhum dado pessoal.';

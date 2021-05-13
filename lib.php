@@ -1,15 +1,37 @@
 <?php
+// This file is part of Moodle - https://moodle.org/
+//
+// Moodle is free software: you can redistribute it and/or modify
+// it under the terms of the GNU General Public License as published by
+// the Free Software Foundation, either version 3 of the License, or
+// (at your option) any later version.
+//
+// Moodle is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+// GNU General Public License for more details.
+//
+// You should have received a copy of the GNU General Public License
+// along with Moodle.  If not, see <https://www.gnu.org/licenses/>.
+
+/**
+ * Repository Vimeo lib
+ *
+ * @package    repository_vimeo
+ * @copyright  2021 4Linux  {@link https://4linux.com.br/}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ */
+
 use Vimeo\Vimeo;
 
 require 'vendor/autoload.php';
 
 /**
- * Plugin capabilities.
+ * Repository Vimeo lib
  *
- * @package repository_vimeo
- * @copyright 2017 Denis Ribeiro
- * @author Denis Ribeiro <dpr001@gmail.com>
- * @license http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
+ * @package    repository_vimeo
+ * @copyright  2021 4Linux  {@link https://4linux.com.br/}
+ * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 defined('MOODLE_INTERNAL') || die();
 
@@ -47,6 +69,7 @@ class repository_vimeo extends repository
       'video/mp4' => '.mp4'
     ];
 
+    /** @var string[] VIDEO_QUALITIES */
     const VIDEO_QUALITIES = [
         'high' => 'hd',
         'medium' => 'sd',
@@ -63,8 +86,7 @@ class repository_vimeo extends repository
      * @param object $context            
      * @param array $options            
      */
-    public function __construct($repositoryid, $context = SYSCONTEXTID, $options = array())
-    {
+    public function __construct($repositoryid, $context = SYSCONTEXTID, $options = array()) {
 
         parent::__construct($repositoryid, $context, $options);
 
@@ -76,8 +98,6 @@ class repository_vimeo extends repository
 
         $this->vimeolib->setToken($this->token);
 
-        $this->get_video_listing('/me/videos', []);
-//        die;
         // Without an API key, don't show this repo to users as its useless without it.
         if (empty($this->token)) {
             $this->disabled = true;
@@ -90,12 +110,11 @@ class repository_vimeo extends repository
      * @param object $mform
      * @param string $classname
      */
-    public static function type_config_form($mform, $classname = 'repository')
-    {
+    public static function type_config_form($mform, $classname = 'repository') {
         global $PAGE;
 
-
         $client_id = get_config('vimeo', 'client_id');
+
         $client_secret = get_config('vimeo', 'client_secret');
 
         if (empty($client_id)) {
@@ -145,8 +164,7 @@ class repository_vimeo extends repository
      * @param int $page
      * @return array
      */
-    public function get_listing($path = '', $page = 1)
-    {
+    public function get_listing($path = '', $page = 1) {
 
         $filters = [
             'page' => $page
@@ -162,8 +180,7 @@ class repository_vimeo extends repository
      * @param int $page
      * @return array
      */
-    public function search($text = '', $page = 1)
-    {
+    public function search($text = '', $page = 1) {
 
         $sort = optional_param('repository_vimeo_select_sort', 'default', PARAM_TEXT);
         $direction = optional_param('repository_vimeo_select_direction', 'asc', PARAM_TEXT);
@@ -191,7 +208,7 @@ class repository_vimeo extends repository
 
         $html = [];
 
-        // label search name
+        // label search name.
         $html[] = html_writer::tag('label', get_string('searchby', 'repository_vimeo'), [
             'for' => 'label_search_name',
             'class' => 'repository-vimeo-label'
@@ -199,7 +216,7 @@ class repository_vimeo extends repository
 
         $html[] = html_writer::empty_tag('br');
 
-        // text field search name
+        // text field search name.
         $html[] = html_writer::empty_tag('input', [
             'type' => 'text',
             'name' => 's',
@@ -210,7 +227,7 @@ class repository_vimeo extends repository
 
         $html[] = html_writer::empty_tag('br');
 
-        // Sort field
+        // Sort field.
 
         $sortoptions = [
             [
@@ -244,7 +261,7 @@ class repository_vimeo extends repository
             ]
         ];
 
-        // label select sort
+        // label select sort.
         $html[] = html_writer::tag('label', get_string('sort', 'repository_vimeo'), [
             'for' => 'repository_vimeo_select_sort',
             'class' => 'repository-vimeo-label'
@@ -271,7 +288,7 @@ class repository_vimeo extends repository
 
         $html[] = html_writer::end_tag('select');
 
-        // Direction field
+        // Direction field.
         $directionoptions = [
             [
                 'value' => 'asc',
@@ -283,7 +300,7 @@ class repository_vimeo extends repository
             ]
         ];
 
-        // label select sort
+        // label select sort.
         $html[] = html_writer::tag('label', get_string('direction', 'repository_vimeo'), [
             'for' => 'repository_vimeo_select_direction',
             'class' => 'repository-vimeo-label repository-vimeo-label-inline'
@@ -306,7 +323,7 @@ class repository_vimeo extends repository
 
         $html[] = html_writer::empty_tag('br');
 
-        // Submit button
+        // Submit button.
         $html[] = html_writer::empty_tag('input', [
             'type' => 'submit',
             'name' => 'repository_vimeo_submit_button',
@@ -314,33 +331,22 @@ class repository_vimeo extends repository
             'title' => get_string('search', 'repository_vimeo'),
             'class' => 'repository-vimeo-button'
         ]);
-        $html[] = html_writer::empty_tag('br');
 
+        $html[] = html_writer::empty_tag('br');
 
         return join('', $html);
     }
 
-//    /**
-//     * file types supported by vimeo plugin
-//     *
-//     * @return array
-//     */
-//    public function supported_filetypes()
-//    {
-//        return array(
-//            'video'
-//        );
-//    }
-//
-//    /**
-//     * Vimeo plugin only return external links
-//     *
-//     * @return int
-//     */
-//    public function supported_returntypes()
-//    {
-//        return FILE_EXTERNAL;
-//    }
+    /**
+     * File types supported by vimeo plugin
+     *
+     * @return array
+     */
+    public function supported_filetypes() {
+        return array(
+            'video'
+        );
+    }
 
     /**
      * Get custom options from config table.
@@ -350,7 +356,6 @@ class repository_vimeo extends repository
      */
     public function get_option($config = '')
     {
-
         if (in_array($config, self::CUSTOM_OPTIONS)) {
             return trim(get_config('vimeo', $config));
         }
@@ -453,8 +458,9 @@ class repository_vimeo extends repository
             $videosrc = $this->process_video($video['files']);
 
             $options->list[] = [
-                'title' => $video['name'],
+                'title' => $video['name'] . '.mp4',
                 'source' => $videosrc['link_secure'],
+                'url' => $videosrc['link_secure'],
                 'thumbnail' => $thumbnail,
                 'thumbnail_width' => 175,
                 'thumbnail_height' => 125
@@ -470,7 +476,7 @@ class repository_vimeo extends repository
      * @param $filters
      * @return stdClass
      */
-    private function build_listing_filters($filters) {
+    public function build_listing_filters($filters) {
         $options = new stdClass();
 
         $options->sort = $filters['sort'] ?: 'date';
@@ -488,7 +494,7 @@ class repository_vimeo extends repository
      * @param $file
      * @return bool
      */
-    private function filter_type($file) {
+    public function filter_type($file) {
 
         if (!in_array($file['type'], array_keys(self::PREFERRED_VIDEO_TYPE))) {
             return false;
@@ -507,12 +513,13 @@ class repository_vimeo extends repository
 
     /**
      * Look for the higher file quality
+     * Look for the higher file quality
      *
      * @param $files
      * @param string $quality
      * @return array
      */
-    private function get_video_by_quality($files, $quality = 'high') {
+    public function get_video_by_quality($files, $quality = 'high') {
         $file = array_filter($files, function ($file) use ($quality) {
             return $file['quality'] === self::VIDEO_QUALITIES[$quality];
         });
@@ -538,7 +545,7 @@ class repository_vimeo extends repository
      * @param array $files
      * @return array
      */
-    private function process_video($files) {
+    public function process_video($files) {
 
         $filteredfiles = array_filter($files, [$this, 'filter_type']);
 

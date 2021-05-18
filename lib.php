@@ -146,6 +146,7 @@ class repository_vimeo extends repository
         $url = self::generate_authorization_url();
 
         $mform->addElement('hidden', 'access_token', '');
+        $mform->setType('access_token', PARAM_RAW_TRIMMED);
 
         if (!empty(get_config('vimeo', 'client_id')) && !empty(get_config('client_secret'))) {
             $mform->addElement('html', "<p>" . get_string('authenticatebuttonhelper', 'repository_vimeo') . "</p>");

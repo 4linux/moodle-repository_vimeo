@@ -27,14 +27,6 @@ use Vimeo\Vimeo;
 require_once('vendor/autoload.php');
 require('../../config.php');
 
-$modulename = get_string('pluginname', 'repository_vimeo');
-
-$PAGE->navbar->add($modulename);
-
-echo $OUTPUT->header();
-
-echo $OUTPUT->heading(get_string('vimeoauthentication', 'repository_vimeo'));
-
 $code = $_GET['code'];
 
 if (empty($code)) {
@@ -42,7 +34,19 @@ if (empty($code)) {
     die;
 }
 
+require_login(null, false);
+
+$PAGE->set_context(context_system::instance());
+
 $PAGE->set_url('/repository/vimeo/authentication_callback.php', array('code' => $code));
+
+$modulename = get_string('pluginname', 'repository_vimeo');
+
+$PAGE->navbar->add($modulename);
+
+echo $OUTPUT->header();
+
+echo $OUTPUT->heading(get_string('vimeoauthentication', 'repository_vimeo'));
 
 $clientid = get_config('vimeo', 'client_id');
 $clientsecret = get_config('vimeo', 'client_secret');

@@ -113,7 +113,6 @@ class Vimeo
                 } else {
                     $body = http_build_query($params, '', '&');
                 }
-
                 $curl_url = self::ROOT_ENDPOINT . $url;
                 $curl_opts = array(
                     CURLOPT_POST => true,

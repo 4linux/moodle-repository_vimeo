@@ -24,6 +24,8 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version = 2016120515; // The current plugin version (Date: YYYYMMDDXX)
+$plugin->version = 2021051800; // The current plugin version (Date: YYYYMMDDXX)
 $plugin->requires = 2016112900; // Requires this Moodle version
 $plugin->component = 'repository_vimeo'; // Full name of the plugin (used for diagnostics)
+$plugin->release = 'v1.0';
+$plugin->maturity = MATURITY_BETA;
